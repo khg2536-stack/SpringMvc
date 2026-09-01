@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>영화 추가</title>
+    <link rel="stylesheet" href="/mvc.css">
+</head>
+<body>
+    <form method="post" action="createMovie"
+        th:object="${createMovieForm}">
+        제목 :
+        <input type="text" name="name" th:value="${name}">
+        <div th:if="${#fields.hasErrors('name')}"
+             th:errors="*{name}"
+             th:errorclass="err">
+        </div>
+        <br/>
+        장르 :
+        <select id="genre" name="genreId" th:value="${genreId}">
+            <option value=""> --장르 선택-- </option>
+            <option th:each="gen : ${genreList}"
+                    th:value="${gen.id}"
+                    th:text="${gen.name}">
+            </option>
+        </select>
+<!--        <input type="text" name="genreId" th:value="${genreId}">-->
+        <br/>
+        가격 :
+        <label>
+            <input type="text" name="price" th:value="${price}">
+        </label>
+        <div th:if="${#fields.hasErrors('price')}"
+             th:errors="*{price}"
+             th:errorclass="err">
+        </div>
+        <br/>
+        출시 년도 :
+        <input type="text" name="releaseYear" th:value="${releaseYear}">
+        <div th:if="${#fields.hasErrors('releaseYear')}"
+             th:errors="*{releaseYear}"
+             th:errorclass="err">
+
+        </div>
+        <br/>
+        <input type="submit" value="등록">
+    </form>
+</body>
+</html>

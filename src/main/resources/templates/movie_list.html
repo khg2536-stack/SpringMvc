@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="createMovie">영화추가</a>
+    <table border ="1">
+        <tr>
+<!--            <th>수정</th>-->
+            <th>제목</th>
+            <th>장르</th>
+            <th>가격</th>
+            <th>개봉년도</th>
+            <th>삭제</th>
+        </tr>
+        <tr th:each="m : ${movieList}">
+            <td>
+                <a th:href="|/editMovie/${m.id}|" th:text="${m.name}"></a>
+            </td>
+<!--            <td th:text="${m.name}"></td>-->
+            <td th:text="${m.genre.name}"></td>
+            <td th:text="${m.price}"></td>
+            <td th:text="${m.releaseYear}"></td>
+            <td>
+                <a href="|/deleteMovie/${m.id}">삭제</a>
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>
